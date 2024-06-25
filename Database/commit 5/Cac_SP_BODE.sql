@@ -1,0 +1,40 @@
+﻿USE TN_CSDLPT
+GO
+--THÊM CÂU HỎI
+CREATE PROC [dbo].[SP_ThemCauHoi]
+@MAMH nchar(5),
+@TRINHDO nchar(1),
+@NOIDUNG ntext,
+@A ntext,
+@B ntext,
+@C ntext,
+@D ntext,
+@DAPAN nchar(1),
+@MAGV nchar(8)
+AS
+	INSERT INTO BODE(MAMH,TRINHDO,NOIDUNG,A,B,C,D,DAPAN,MAGV)
+	VALUES (@MAMH,@TRINHDO,@NOIDUNG,@A,@B,@C,@D,@DAPAN,@MAGV)
+GO
+--SỬA CÂU HỎI
+CREATE PROC [dbo].[SP_SuaCauHoi]
+@CAUHOI INT,
+@MAMH nchar(5),
+@TRINHDO nchar(1),
+@NOIDUNG ntext,
+@A ntext,
+@B ntext,
+@C ntext,
+@D ntext,
+@DAPAN nchar(1)
+AS
+	UPDATE BODE
+	SET MAMH=@MAMH,TRINHDO=@TRINHDO,NOIDUNG=@NOIDUNG,A=@A,B=@B,C=@C,D=@D,DAPAN=@DAPAN
+	WHERE CAUHOI=@CAUHOI
+GO
+--XÓA CÂU HỎI
+CREATE PROC [dbo].[SP_XoaCauHoi]
+@CAUHOI INT
+AS
+	DELETE FROM BODE
+	WHERE CAUHOI=@CAUHOI
+GO
