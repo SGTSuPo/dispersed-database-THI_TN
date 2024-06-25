@@ -1,0 +1,75 @@
+﻿USE [TN_CSDLPT]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_XoaGiaoVien]    Script Date: 25/06/2024 6:33:41 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--SỬA GIÁO VIÊN
+create PROC [dbo].[SP_SuaGiaoVien]
+@MAGV nchar(8),
+@HO NVARCHAR(50),
+@TEN NVARCHAR(10),
+@HOCVI NVARCHAR(40),
+@MAKH nchar(8),
+@TT INT
+AS
+BEGIN
+	Update GIAOVIEN
+	Set HO=@HO,TEN=@TEN,HOCVI=@HOCVI,MAKH=@MAKH,TrangThaiXoa=@TT
+	where MAGV = @MAGV
+END
+GO
+--SỬA KHOA
+create PROC [dbo].[SP_SuaKhoa]
+@MAKH nchar(8),
+@TENKH NVARCHAR(50),
+@MACS nchar(3)
+AS
+BEGIN
+	Update KHOA
+	Set TENKH=@TENKH,MACS=@MACS
+	where MAKH = @MAKH
+END
+GO
+--SỬA MÔN HỌC
+create PROC [dbo].[SP_SuaMonHoc]
+@MAMH nchar(5),
+@TENMH NVARCHAR(50),
+@TT INT
+AS
+BEGIN
+	Update MONHOC
+	Set TENMH=@TENMH,TrangThaiXoa=@TT
+	where MAMH = @MAMH
+END
+GO
+--SỬA LỚP
+create PROC [dbo].[SP_SuaLop]
+@MALOP nchar(8),
+@TENLOP NVARCHAR(50),
+@MAKH nchar(8)
+AS
+BEGIN
+	Update LOP
+	Set TENLOP=@TENLOP,MAKH=@MAKH
+	where MALOP = @MALOP
+END
+GO
+--SỬA SINH VIÊN
+create PROC [dbo].[SP_SuaSinhVien]
+@MASV nchar(8),
+@HO NVARCHAR(50),
+@TEN NVARCHAR(10),
+@NGAYSINH date,
+@DIACHI NVARCHAR(100),
+@MALOP nchar(15),
+@PASSWORD NVARCHAR(30),
+@TT INT
+AS
+BEGIN
+	Update SINHVIEN
+	Set HO=@HO,TEN=@TEN, NGAYSINH=@NGAYSINH, DIACHI=@DIACHI, MALOP=@MALOP, PASSWORD=@PASSWORD,TrangThaiXoa=@TT
+	where MASV = @MASV
+END
+GO
